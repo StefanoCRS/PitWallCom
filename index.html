@@ -16,12 +16,12 @@ button,input{font:inherit}
 .scr .big{padding:0 4cqw;overflow-wrap:anywhere}
 .scr .pill{background:rgba(0,0,0,.82);color:#fff;padding:2cqh 5cqw;border-radius:2cqw}
 .scr.wbp .pill{outline:.8cqw solid #fff}
+.scr .flab{position:absolute;right:3cqw;bottom:3cqh;font-size:5cqw;letter-spacing:.04em}
+.scr .flab.pill{padding:1cqh 2.2cqw;border-radius:1cqw}
 .scr .idle{font-size:6cqw;opacity:.35;font-weight:700}
-.pos{width:100%;height:100%;display:flex;flex-direction:column;padding:3cqh 4cqw;gap:3cqh}
-.pos .p{flex:1.4;display:flex;align-items:center;justify-content:center;font-size:min(46cqh,40cqw)}
-.pos .g{flex:1;display:flex;align-items:center;justify-content:space-between;border:1cqw solid currentColor;border-radius:2cqw;padding:0 4cqw;font-size:min(17cqh,11cqw)}
-.pos .g small{font-size:.38em;font-weight:700;letter-spacing:.06em}
-.age{position:absolute;right:2cqw;bottom:1.5cqh;font-size:3cqw;font-weight:600;opacity:.5}
+.pos{width:100%;height:100%;display:flex;flex-direction:column}
+.pos div{flex:1;display:flex;align-items:center;justify-content:center;font-size:min(28cqh,14cqw);white-space:nowrap}
+.age{position:absolute;right:2cqw;top:1.5cqh;font-size:3cqw;font-weight:600;opacity:.5}
 /* pilota */
 #pilot{position:fixed;inset:0;z-index:5}
 #pilot .scr{width:100%;height:100%}
@@ -61,10 +61,11 @@ input{padding:12px;border-radius:10px;border:2px solid var(--bd);background:var(
 "use strict";
 var RELAY="https://ntfy.sh/"; /* servizio gratuito di messaggistica: cambia qui se usi un tuo server ntfy */
 var FLAGS={
- red:["ROSSA","#e10600","#fff"],yellow:["GIALLA","#ffd400","#000"],blue:["BLU","#0057ff","#fff"],
+ red:["ROSSA","#e10600","#fff"],yellow:["GIALLA","#ffd400","#000"],green:["VERDE","#00a651","#fff"],blue:["BLU","#0057ff","#fff"],
  check:["SCACCHI","","#fff"],black:["NERA","#000","#fff"],bo:["NERA ARANCIO","#000","#fff"],wb:["BIANCO NERA","","#fff"]
 };
-var TXT={pitnow:"PIT NOW",pitnext:"PIT NEXT LAP",last:"LAST LAP",cool:"COOL DOWN",push:"PUSH"};
+var TXT={pitnow:"PIT NOW",pitnext:"PIT NEXT LAP",last:"LAST LAP",cool:"COOL DOWN",push:"PUSH",fcy:"FCY",sc:"SC",scin:"SAFETY CAR IN THIS LAP"};
+var YEL={fcy:1,sc:1};
 var CHECK="repeating-conic-gradient(#000 0 25%,#fff 0 50%) 0 0/22cqmin 22cqmin";
 var WB="linear-gradient(135deg,#fff 50%,#000 50%)";
 var BO="radial-gradient(circle at 50% 50%,#ff7a00 0 30cqmin,#000 30.5cqmin)";
@@ -90,17 +91,18 @@ function render(el,m,th){
   else if(m.v==="bo")el.style.background=BO;
   else el.style.background=f[1];
   el.style.color=f[2];
-  var t=h("div","big"+((!f[1]||m.v==="bo")?" pill":""),f[0]);t.style.fontSize=fs(f[0]);
-  if(m.v==="bo"){t.style.position="absolute";t.style.bottom="4cqh";t.style.fontSize="11cqw"}
+  var t=h("div","flab"+((!f[1]||m.v==="bo")?" pill":""),f[0]);
   el.appendChild(t);
  }else if(m.k==="txt"||m.k==="free"){
   var s=m.k==="txt"?(TXT[m.v]||""):String(m.t||"").toUpperCase();
+  if(m.k==="txt"&&YEL[m.v]){el.style.background="#ffd400";el.style.color="#000"}
   var t2=h("div","big",s);t2.style.fontSize=fs(s);el.appendChild(t2);
  }else if(m.k==="pos"){
-  var w=h("div","pos");w.appendChild(h("div","p","P"+m.p));
-  var a=h("div","g");a.appendChild(h("small",null,"▲ DAVANTI"));a.appendChild(h("span",null,fmtGap(m.a)));
-  var b=h("div","g");b.appendChild(h("small",null,"▼ DIETRO"));b.appendChild(h("span",null,fmtGap(m.b)));
-  w.append(a,b);el.appendChild(w);
+  var w=h("div","pos");
+  w.appendChild(h("div",null,"P"+m.p));
+  w.appendChild(h("div",null,"▲ "+fmtGap(m.a)));
+  w.appendChild(h("div",null,"▼ "+fmtGap(m.b)));
+  el.appendChild(w);
  }
  if(m.seq&&m.k!=="clear"){var ag=h("div","age","");ag.dataset.seq=m.seq;el.appendChild(ag)}
 }
@@ -247,7 +249,7 @@ function boxView(root){
 
  wrap.appendChild(h("h2",null,"Bandiere"));
  var g1=h("div","grid");
- var sty={red:["#e10600","#fff"],yellow:["#ffd400","#000"],blue:["#0057ff","#fff"],black:["#000","#fff"]};
+ var sty={red:["#e10600","#fff"],yellow:["#ffd400","#000"],green:["#00a651","#fff"],blue:["#0057ff","#fff"],black:["#000","#fff"]};
  Object.keys(FLAGS).forEach(function(k){
   var b=h("button",null,FLAGS[k][0]);
   if(sty[k]){b.style.background=sty[k][0];b.style.color=sty[k][1];b.style.borderColor=sty[k][0]}
@@ -259,7 +261,7 @@ function boxView(root){
  wrap.appendChild(g1);
  wrap.appendChild(h("h2",null,"Comunicazioni"));
  var g2=h("div","grid");
- Object.keys(TXT).forEach(function(k){var b=h("button",null,TXT[k]);b.onclick=function(){send({k:"txt",v:k})};g2.appendChild(b)});
+ Object.keys(TXT).forEach(function(k){var b=h("button",null,TXT[k]);if(YEL[k]){b.style.background="#ffd400";b.style.color="#000";b.style.borderColor="#ffd400"}b.onclick=function(){send({k:"txt",v:k})};g2.appendChild(b)});
  wrap.appendChild(g2);
  wrap.appendChild(h("div","note","Il pilota vede il messaggio finché non ne invii un altro o premi PULISCI SCHERMO. Sul suo display, in basso a destra, c’è da quanti secondi è arrivato."));
  root.appendChild(wrap);
