@@ -14,13 +14,11 @@ body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"S
 button,input{font:inherit}
 .scr{container-type:size;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;position:relative;font-weight:900;line-height:1;letter-spacing:.01em}
 .scr .big{padding:0 4cqw;overflow-wrap:anywhere}
-.scr .pill{background:rgba(0,0,0,.82);color:#fff;padding:2cqh 5cqw;border-radius:2cqw}
-.scr.wbp .pill{outline:.8cqw solid #fff}
-.scr .flab{position:absolute;right:3cqw;bottom:3cqh;font-size:5cqw;letter-spacing:.04em}
-.scr .flab.pill{padding:1cqh 2.2cqw;border-radius:1cqw}
-.scr .idle{font-size:6cqw;opacity:.35;font-weight:700}
+.scr .num{position:absolute;right:3cqw;bottom:3cqh;font-size:8cqw;padding:1cqh 2.5cqw;border-radius:1.2cqw;background:#000;color:#fff;outline:.4cqw solid rgba(255,255,255,.75)}
+.scr .bignum{font-size:38cqw;opacity:.45}
+.scr .idle{font-size:5cqw;opacity:.35;font-weight:700;margin-top:2cqh}
 .pos{width:100%;height:100%;display:flex;flex-direction:column}
-.pos div{flex:1;display:flex;align-items:center;justify-content:center;font-size:min(28cqh,14cqw);white-space:nowrap}
+.pos div{flex:1;display:flex;align-items:center;justify-content:center;font-size:min(26cqh,12cqw);white-space:nowrap}
 .age{position:absolute;right:2cqw;top:1.5cqh;font-size:3cqw;font-weight:600;opacity:.5}
 /* pilota */
 #pilot{position:fixed;inset:0;z-index:5}
@@ -32,26 +30,37 @@ button,input{font:inherit}
 #menu button{font-size:20px;font-weight:700;padding:16px 22px;border-radius:10px;border:0;background:#fff;color:#000;text-align:left}
 #start{position:fixed;inset:0;z-index:20;background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;font-size:22px;text-align:center;padding:20px}
 #start button{font-size:28px;font-weight:800;padding:22px 44px;border-radius:14px;border:0;background:#ffd400;color:#000}
+#start .n{font-size:90px;font-weight:900}
 /* box */
-.wrap{max-width:1100px;margin:0 auto;padding:14px}
+.wrap{max-width:1500px;margin:0 auto;padding:14px}
 header{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
 h1{font-size:20px;margin:0}
-h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:18px 0 8px}
+h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:16px 0 8px}
 .stat{font-size:13px;color:var(--mut)}
 .stat b{display:inline-block;width:10px;height:10px;border-radius:50%;background:#c62828;margin-right:6px}
 .stat.ok b{background:#2e7d32}
 .card{background:var(--card);border:2px solid var(--bd);border-radius:12px;padding:12px;margin-top:12px}
+details.card summary{cursor:pointer;font-weight:700}
+.cfg{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:10px}
+.cfg div{display:flex;gap:10px;align-items:center}
+.cfg input[type=checkbox]{width:24px;height:24px;flex:none}
+.cfg input[type=text]{width:90px;padding:8px;font-size:18px;text-transform:uppercase}
+.cars{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));margin-top:12px}
+.cars .card{margin:0}
+.chead{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.chead .n{font-size:34px;font-weight:900}
 .grid{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
-.grid button{min-height:64px;border-radius:10px;border:2px solid var(--bd);font-weight:800;font-size:16px;cursor:pointer;background:var(--card);color:var(--fg)}
+.grid.s{grid-template-columns:repeat(2,1fr)}
+.grid button{min-height:56px;border-radius:10px;border:2px solid var(--bd);font-weight:800;font-size:15px;cursor:pointer;background:var(--card);color:var(--fg)}
 .grid button:active{transform:scale(.97)}
-.row{display:flex;gap:8px;flex-wrap:wrap;align-items:end}
-.row label{display:flex;flex-direction:column;font-size:12px;color:var(--mut);gap:4px;flex:1;min-width:110px}
-input{padding:12px;border-radius:10px;border:2px solid var(--bd);background:var(--bg);color:var(--fg);font-size:18px;width:100%}
-.go{padding:14px 20px;border-radius:10px;border:0;background:#1565c0;color:#fff;font-weight:800;cursor:pointer;font-size:15px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+input{padding:10px;border-radius:10px;border:2px solid var(--bd);background:var(--bg);color:var(--fg);font-size:17px;width:100%}
+.row input{flex:1;min-width:70px}
+.go{padding:12px 16px;border-radius:10px;border:0;background:#1565c0;color:#fff;font-weight:800;cursor:pointer;font-size:14px}
 .go.wa{background:#1fa855}.go.gr{background:#555}
-#prev{width:100%;max-width:520px;aspect-ratio:16/10;border-radius:12px;border:2px solid var(--bd)}
-.top{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
-.note{font-size:12px;color:var(--mut);margin-top:6px;word-break:break-all}
+.prev{width:100%;aspect-ratio:16/10;border-radius:10px;border:2px solid var(--bd);margin:8px 0}
+.note{font-size:12px;color:var(--mut);margin-top:6px}
+.warn{color:#c62828;font-weight:700}
 </style>
 </head>
 <body>
@@ -60,14 +69,13 @@ input{padding:12px;border-radius:10px;border:2px solid var(--bd);background:var(
 (function(){
 "use strict";
 var RELAY="https://ntfy.sh/"; /* servizio gratuito di messaggistica: cambia qui se usi un tuo server ntfy */
-var FLAGS={
- red:["ROSSA","#e10600","#fff"],yellow:["GIALLA","#ffd400","#000"],green:["VERDE","#00a651","#fff"],blue:["BLU","#0057ff","#fff"],
- check:["SCACCHI","","#fff"],black:["NERA","#000","#fff"],bo:["NERA ARANCIO","#000","#fff"],wb:["BIANCO NERA","","#fff"]
-};
+var GFLAGS={red:["ROSSA","#e10600","#fff"],yellow:["GIALLA","#ffd400","#000"],green:["VERDE","#00a651","#fff"],blue:["BLU","#0057ff","#fff"],check:["SCACCHI","","#fff"]};
+var CFLAGS={black:["NERA","#000","#fff"],bo:["NERA ARANCIO","#000","#ff7a00"],wb:["BIANCO NERA","",""]};
 var TXT={pitnow:"PIT NOW",pitnext:"PIT NEXT LAP",last:"LAST LAP",cool:"COOL DOWN",push:"PUSH",fcy:"FCY",sc:"SC",scin:"SAFETY CAR IN THIS LAP"};
 var YEL={fcy:1,sc:1};
+var CAR_TXT=["pitnow","pitnext","last","cool","push"],GEN_TXT=["fcy","sc","scin"];
 var CHECK="repeating-conic-gradient(#000 0 25%,#fff 0 50%) 0 0/22cqmin 22cqmin";
-var WB="linear-gradient(135deg,#fff 50%,#000 50%)";
+var WB="linear-gradient(to bottom right,#fff 50%,#000 50%)";
 var BO="radial-gradient(circle at 50% 50%,#ff7a00 0 30cqmin,#000 30.5cqmin)";
 
 var mem={};
@@ -76,23 +84,21 @@ var ls={get:function(k){try{return localStorage.getItem(k)}catch(e){return mem[k
 function h(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
 function fs(s){var n=s.length;return n<=5?"30cqw":n<=8?"22cqw":n<=12?"15cqw":n<=20?"11cqw":n<=36?"8cqw":"6cqw"}
 function fmtGap(v){v=String(v||"").trim();if(!v)return "—";return /^[+\-−]/.test(v)?v.replace("-","−"):v}
-function newCode(){var a=new Uint8Array(10),s="";(window.crypto||{getRandomValues:function(x){for(var i=0;i<x.length;i++)x[i]=Math.random()*256}}).getRandomValues(a);
+function cleanN(v){return String(v||"").toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,4)}
+function newCode(){var a=new Uint8Array(10),s="";window.crypto.getRandomValues(a);
  for(var i=0;i<a.length;i++)s+="abcdefghjkmnpqrstuvwxyz23456789"[a[i]%31];return s}
 
 /* ---- disegno dei messaggi ---- */
-function render(el,m,th){
+function render(el,m,th,num){
  var D=th==="light"?["#fff","#000"]:["#000","#fff"];
- el.replaceChildren();el.className="scr";el.style.background=D[0];el.style.color=D[1];
- if(!m||m.k==="clear"){el.appendChild(h("div","idle","BOX COLLEGATO"));return}
+ el.replaceChildren();el.className=el.dataset.cls||"scr";el.style.background=D[0];el.style.color=D[1];
+ if(!m||m.k==="clear"){el.appendChild(h("div","bignum",num||""));el.appendChild(h("div","idle","BOX COLLEGATO"));return}
  if(m.k==="flag"){
-  var f=FLAGS[m.v];if(!f)return;
+  var f=GFLAGS[m.v]||CFLAGS[m.v];if(!f)return;
   if(m.v==="check")el.style.background=CHECK;
-  else if(m.v==="wb"){el.style.background=WB;el.classList.add("wbp")}
+  else if(m.v==="wb")el.style.background=WB;
   else if(m.v==="bo")el.style.background=BO;
   else el.style.background=f[1];
-  el.style.color=f[2];
-  var t=h("div","flab"+((!f[1]||m.v==="bo")?" pill":""),f[0]);
-  el.appendChild(t);
  }else if(m.k==="txt"||m.k==="free"){
   var s=m.k==="txt"?(TXT[m.v]||""):String(m.t||"").toUpperCase();
   if(m.k==="txt"&&YEL[m.v]){el.style.background="#ffd400";el.style.color="#000"}
@@ -104,7 +110,8 @@ function render(el,m,th){
   w.appendChild(h("div",null,"▼ "+fmtGap(m.b)));
   el.appendChild(w);
  }
- if(m.seq&&m.k!=="clear"){var ag=h("div","age","");ag.dataset.seq=m.seq;el.appendChild(ag)}
+ if(num)el.appendChild(h("div","num",num));
+ if(m.seq){var ag=h("div","age","");ag.dataset.seq=m.seq;el.appendChild(ag)}
 }
 setInterval(function(){
  document.querySelectorAll(".age").forEach(function(a){
@@ -113,15 +120,25 @@ setInterval(function(){
  });
 },1000);
 
-/* ---- rete (relay ntfy.sh) ---- */
-var CODE=null,cur=null,subs=[],statusCb=null,sendCb=null,es=null,wd=null,initial=true;
+/* ---- rete (relay ntfy.sh) e archivio messaggi ---- */
+var CODE=null,subs=[],statusCb=null,sendCb=null,es=null,wd=null;
+var seen={},lastAll=null,per={},thNow="dark",thSeq=0;
 function topicUrl(){return RELAY+"pw-"+CODE}
-function setMsg(m){if(m&&cur&&m.id&&m.id===cur.id)return;cur=m;subs.forEach(function(f){f(m)})}
+function effective(n){var a=lastAll,b=per[n];return b&&(!a||b.seq>=a.seq)?b:a}
+function setMsg(m){
+ if(!m||!m.id||seen[m.id])return;seen[m.id]=1;
+ if(m.th&&m.seq>=thSeq){thNow=m.th;thSeq=m.seq}
+ if(m.k!=="theme"){
+  if(m.c==="*"){if(!lastAll||m.seq>=lastAll.seq)lastAll=m}
+  else if(m.c){if(!per[m.c]||m.seq>=per[m.c].seq)per[m.c]=m}
+ }
+ subs.forEach(function(f){f(m)});
+}
 function arm(){clearTimeout(wd);wd=setTimeout(connect,100000)}
 function connect(){
- if(es){es.close();es=null}clearTimeout(wd);initial=true;
+ if(es){es.close();es=null}clearTimeout(wd);
  if(!CODE)return;
- es=new EventSource(topicUrl()+"/sse?since=latest");
+ es=new EventSource(topicUrl()+"/sse?since=1h");
  es.onopen=function(){statusCb&&statusCb(true);arm()};
  es.onerror=function(){statusCb&&statusCb(false)};
  es.addEventListener("keepalive",arm);
@@ -129,9 +146,7 @@ function connect(){
   arm();
   try{
    var d=JSON.parse(e.data);if(d.event!=="message"||!d.message)return;
-   var m=JSON.parse(d.message);m.seq=(d.time||0)*1000||Date.now();
-   if(initial){initial=false;if(Date.now()-m.seq>20*60*1000)return} /* ignora messaggi vecchi al primo collegamento */
-   setMsg(m);
+   var m=JSON.parse(d.message);m.seq=(d.time||0)*1000||Date.now();setMsg(m);
   }catch(_){}
  };
 }
@@ -150,13 +165,13 @@ function beep(){
   o.connect(g);g.connect(actx.destination);o.start();o.stop(actx.currentTime+.18)}}catch(e){}
  try{navigator.vibrate&&navigator.vibrate([120,60,120])}catch(e){}
 }
-function pilotView(root){
+function pilotView(root,N){
  var scr=h("div","scr"),box=h("div");box.id="pilot";box.appendChild(scr);
  var dot=h("div");dot.id="dot";
  var mb=h("button",null,"☰");mb.id="menub";mb.setAttribute("aria-label","Menu");
  var menuEl=null,mt=null;
- function th(){var l=ls.get("pw-pth")||"auto";if(l!=="auto")return l;return (cur&&cur.th)||"dark"}
- function redraw(){render(scr,cur,th())}
+ function th(){var l=ls.get("pw-pth")||"auto";return l!=="auto"?l:thNow}
+ function redraw(){render(scr,effective(N),th(),N)}
  function closeMenu(){if(menuEl){menuEl.remove();menuEl=null}clearTimeout(mt)}
  function openMenu(){
   closeMenu();menuEl=h("div");menuEl.id="menu";
@@ -171,7 +186,7 @@ function pilotView(root){
  }
  mb.onclick=function(){menuEl?closeMenu():openMenu()};
  var st=h("div");st.id="start";
- st.appendChild(h("div",null,"Display pilota"));
+ st.appendChild(h("div",null,"Display pilota"));st.appendChild(h("div","n","#"+N));
  var btn=h("button",null,"TOCCA PER AVVIARE");st.appendChild(btn);
  st.appendChild(h("div",null,"Attiva schermo intero, suono e blocco spegnimento schermo"));
  btn.onclick=async function(){
@@ -182,100 +197,145 @@ function pilotView(root){
   st.remove();
  };
  root.append(box,dot,mb,st);
- subs=[function(m){redraw();if(m&&m.k!=="clear"&&!m.silent&&Date.now()-m.seq<6000)beep()}];
+ subs=[function(m){
+  var mine=m.c==="*"||m.c===N;
+  if(m.k==="theme"||mine)redraw();
+  if(mine&&m.k!=="theme"&&m.k!=="clear"&&!m.silent&&Date.now()-m.seq<6000)beep();
+ }];
  statusCb=function(ok){dot.className=ok?"ok":""};
  redraw();connect();
 }
 
 /* ---- vista box ---- */
+function cfg(){
+ try{var c=JSON.parse(ls.get("pw-cfg"));if(c&&c.length===4)return c}catch(e){}
+ return [{on:true,n:"1"},{on:false,n:"2"},{on:false,n:"3"},{on:false,n:"4"}];
+}
 function boxView(root){
- var wrap=h("div","wrap");
+ var wrap=h("div","wrap"),prevs=[];
  var hd=h("header");hd.appendChild(h("h1",null,"Pit Wall — Comunicazioni"));
  var stat=h("span","stat");stat.appendChild(h("b"));var stt=h("span",null,"connessione…");stat.appendChild(stt);hd.appendChild(stat);wrap.appendChild(hd);
  statusCb=function(ok){stat.className="stat"+(ok?" ok":"");stt.textContent=ok?"online":"offline — controlla la rete"};
  sendCb=function(ok){if(!ok){stat.className="stat";stt.textContent="INVIO FALLITO — controlla la rete"}else if(stat.className.indexOf("ok")<0){stat.className="stat ok";stt.textContent="online"}};
+ if(location.protocol==="file:")wrap.appendChild(h("div","note warn","Pagina aperta da file locale: per condividere i link pilota carica prima il file online."));
+ function boxTh(){return ls.get("pw-th")||"dark"}
+ function refresh(){prevs.forEach(function(p){render(p.el,effective(p.n),boxTh(),p.n)})}
 
- /* collegamento pilota */
- var link=location.href.split("#")[0]+"#p="+CODE;
- var lc=h("div","card");
- lc.appendChild(h("div",null,"Link per il pilota"));
- var lt=h("div","note",link);lc.appendChild(lt);
- var lr=h("div","row");lr.style.marginTop="10px";
- var wa=h("button","go wa","INVIA SU WHATSAPP");
- wa.onclick=function(){window.open("https://wa.me/?text="+encodeURIComponent("Display pilota: "+link),"_blank")};
- var cp=h("button","go gr","COPIA LINK");
- cp.onclick=function(){
-  function ok(){cp.textContent="COPIATO ✓";setTimeout(function(){cp.textContent="COPIA LINK"},1800)}
-  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(link).then(ok).catch(function(){prompt("Copia il link:",link)});
-  else prompt("Copia il link:",link);
- };
- var op=h("button","go gr","APRI VISTA PILOTA");op.onclick=function(){location.hash="#p="+CODE};
- var nw=h("button","go gr","NUOVO CODICE");
- nw.onclick=function(){if(confirm("Il vecchio link smetterà di funzionare. Continuare?")){ls.set("pw-code",newCode());route()}};
- lr.append(wa,cp,op,nw);lc.appendChild(lr);
- if(location.protocol==="file:")lc.appendChild(h("div","note","Attenzione: la pagina è aperta da file locale. Per condividere il link devi prima caricarla online (vedi istruzioni)."));
- wrap.appendChild(lc);
+ /* impostazioni */
+ var det=h("details","card"),sm=h("summary",null,"⚙ Impostazioni vetture");det.appendChild(sm);
+ var cg=h("div","cfg"),dup=h("div","note");det.appendChild(cg);det.appendChild(dup);
+ var carsEl=h("div","cars");
+ function save(c){ls.set("pw-cfg",JSON.stringify(c))}
+ function checkDup(){
+  var c=cfg().filter(function(x){return x.on&&x.n}),seenN={},d=false;
+  c.forEach(function(x){if(seenN[x.n])d=true;seenN[x.n]=1});
+  dup.className="note"+(d?" warn":"");dup.textContent=d?"Attenzione: due vetture hanno lo stesso numero di gara.":"Attiva le vetture che gestisci e scrivi il numero di gara (max 4 caratteri). Se cambi un numero, rimanda il link al pilota.";
+ }
+ cfg().forEach(function(c,i){
+  var d=h("div"),cb=h("input");cb.type="checkbox";cb.checked=c.on;
+  var lb=h("span",null,"Vettura "+(i+1)),ni=h("input");ni.type="text";ni.maxLength=4;ni.value=c.n;ni.placeholder="N°";
+  cb.onchange=function(){var x=cfg();x[i].on=cb.checked;save(x);buildCars();checkDup()};
+  ni.onchange=function(){var x=cfg();x[i].n=cleanN(ni.value);ni.value=x[i].n;save(x);buildCars();checkDup()};
+  d.append(cb,lb,ni);cg.appendChild(d);
+ });
+ checkDup();wrap.appendChild(det);
 
- var top=h("div","top");
- var pv=h("div");pv.appendChild(h("h2",null,"Sul display del pilota"));
- var prev=h("div","scr");prev.id="prev";pv.appendChild(prev);
- var r0=h("div","row");r0.style.marginTop="10px";
- var clr=h("button","go gr","PULISCI SCHERMO");clr.onclick=function(){send({k:"clear"})};
- var thb=h("button","go gr","");
- function thLabel(){thb.textContent=(ls.get("pw-th")||"dark")==="dark"?"☾ NOTTE: bianco su nero":"☀ GIORNO: nero su bianco"}
- thb.onclick=function(){
-  ls.set("pw-th",(ls.get("pw-th")||"dark")==="dark"?"light":"dark");thLabel();
-  var base=cur&&cur.k?JSON.parse(JSON.stringify(cur)):{k:"clear"};base.silent=true;send(base);
- };
- thLabel();r0.append(clr,thb);pv.appendChild(r0);top.appendChild(pv);
-
- var side=h("div");side.style.flex="1";side.style.minWidth="280px";
- side.appendChild(h("h2",null,"Posizione e distacchi"));
- var r=h("div","row");
- function fld(lbl,ph,mode){var l=h("label",null,lbl),i=h("input");i.placeholder=ph;i.inputMode=mode;i.autocomplete="off";l.appendChild(i);r.appendChild(l);return i}
- var ip=fld("POS","3","numeric"),ia=fld("Da chi è davanti","+1.2","text"),ib=fld("Da chi segue","−0.8","text");
- var sp=h("button","go","INVIA POS");
- sp.onclick=function(){var p=parseInt(ip.value,10);if(!p||p<1)return ip.focus();send({k:"pos",p:p,a:ia.value,b:ib.value})};
- r.appendChild(sp);side.appendChild(r);
- side.appendChild(h("div","note","Distacchi in secondi, es. +1.2 / −0.8. Reinvia per aggiornare."));
- side.appendChild(h("h2",null,"Messaggio libero"));
- var r2=h("div","row"),fi=h("input");fi.placeholder="Es. BOX BOX, TRAFFICO, PIOGGIA…";fi.maxLength=60;fi.autocomplete="off";
- var l2=h("label");l2.appendChild(fi);r2.appendChild(l2);
- var sf=h("button","go","INVIA");
- sf.onclick=function(){if(fi.value.trim()){send({k:"free",t:fi.value.trim()});fi.value=""}};
- fi.onkeydown=function(e){if(e.key==="Enter")sf.onclick()};
- r2.appendChild(sf);side.appendChild(r2);
- top.appendChild(side);wrap.appendChild(top);
-
- wrap.appendChild(h("h2",null,"Bandiere"));
+ /* generale */
+ var gc=h("div","card");gc.appendChild(h("h2",null,"Generale — tutte le vetture"));
+ gc.firstChild.style.marginTop="0";
  var g1=h("div","grid");
- var sty={red:["#e10600","#fff"],yellow:["#ffd400","#000"],green:["#00a651","#fff"],blue:["#0057ff","#fff"],black:["#000","#fff"]};
- Object.keys(FLAGS).forEach(function(k){
-  var b=h("button",null,FLAGS[k][0]);
+ var sty={red:["#e10600","#fff"],yellow:["#ffd400","#000"],green:["#00a651","#fff"],blue:["#0057ff","#fff"]};
+ Object.keys(GFLAGS).forEach(function(k){
+  var b=h("button",null,GFLAGS[k][0]);
   if(sty[k]){b.style.background=sty[k][0];b.style.color=sty[k][1];b.style.borderColor=sty[k][0]}
   if(k==="check"){b.style.background=CHECK.replace(/22cqmin/g,"16px");b.style.color="#000";b.style.textShadow="0 0 6px #fff,0 0 6px #fff"}
-  if(k==="wb"){b.style.background=WB;b.style.color="#888";b.style.textShadow="0 0 4px #fff,0 0 4px #000"}
-  if(k==="bo"){b.style.background="#000";b.style.color="#ff7a00";b.style.borderColor="#ff7a00"}
-  b.onclick=function(){send({k:"flag",v:k})};g1.appendChild(b);
+  b.onclick=function(){send({k:"flag",v:k,c:"*"})};g1.appendChild(b);
  });
- wrap.appendChild(g1);
- wrap.appendChild(h("h2",null,"Comunicazioni"));
- var g2=h("div","grid");
- Object.keys(TXT).forEach(function(k){var b=h("button",null,TXT[k]);if(YEL[k]){b.style.background="#ffd400";b.style.color="#000";b.style.borderColor="#ffd400"}b.onclick=function(){send({k:"txt",v:k})};g2.appendChild(b)});
- wrap.appendChild(g2);
- wrap.appendChild(h("div","note","Il pilota vede il messaggio finché non ne invii un altro o premi PULISCI SCHERMO. Sul suo display, in basso a destra, c’è da quanti secondi è arrivato."));
+ gc.appendChild(g1);
+ var g2=h("div","grid");g2.style.marginTop="8px";
+ GEN_TXT.forEach(function(k){
+  var b=h("button",null,TXT[k]);
+  if(YEL[k]){b.style.background="#ffd400";b.style.color="#000";b.style.borderColor="#ffd400"}
+  b.onclick=function(){send({k:"txt",v:k,c:"*"})};g2.appendChild(b);
+ });
+ gc.appendChild(g2);
+ var r0=h("div","row");
+ var clrAll=h("button","go gr","PULISCI TUTTI");clrAll.onclick=function(){send({k:"clear",c:"*"})};
+ var thb=h("button","go gr","");
+ function thLabel(){thb.textContent=boxTh()==="dark"?"☾ NOTTE: bianco su nero":"☀ GIORNO: nero su bianco"}
+ thb.onclick=function(){ls.set("pw-th",boxTh()==="dark"?"light":"dark");thLabel();send({k:"theme",c:"*",th:boxTh()});refresh()};
+ thLabel();r0.append(clrAll,thb);gc.appendChild(r0);
+ wrap.appendChild(gc);
+ wrap.appendChild(carsEl);
+
+ /* schede vettura */
+ function carLink(n){return location.href.split("#")[0]+"#p="+CODE+"&n="+encodeURIComponent(n)}
+ function buildCars(){
+  carsEl.replaceChildren();prevs.length=0;
+  var act=cfg().filter(function(x){return x.on&&x.n});
+  if(!act.length){carsEl.appendChild(h("div","note","Nessuna vettura attiva: aprila da ⚙ Impostazioni vetture."))}
+  act.forEach(function(c){
+   var n=c.n,card=h("div","card"),hh=h("div","chead");
+   hh.appendChild(h("div","n","#"+n));
+   var lr=h("div","row");lr.style.margin="0";
+   var wa=h("button","go wa","WHATSAPP");
+   wa.onclick=function(){window.open("https://wa.me/?text="+encodeURIComponent("Display pilota #"+n+": "+carLink(n)),"_blank")};
+   var cp=h("button","go gr","COPIA LINK");
+   cp.onclick=function(){
+    var link=carLink(n);
+    function ok(){cp.textContent="COPIATO ✓";setTimeout(function(){cp.textContent="COPIA LINK"},1800)}
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(link).then(ok).catch(function(){prompt("Copia il link:",link)});
+    else prompt("Copia il link:",link);
+   };
+   var op=h("button","go gr","APRI");op.onclick=function(){location.hash="#p="+CODE+"&n="+encodeURIComponent(n)};
+   lr.append(wa,cp,op);hh.appendChild(lr);card.appendChild(hh);
+   var pv=h("div","scr prev");pv.dataset.cls="scr prev";card.appendChild(pv);prevs.push({el:pv,n:n});
+
+   var gt=h("div","grid s");
+   CAR_TXT.forEach(function(k){var b=h("button",null,TXT[k]);b.onclick=function(){send({k:"txt",v:k,c:n})};gt.appendChild(b)});
+   card.appendChild(gt);
+   var gf=h("div","grid s");gf.style.marginTop="8px";
+   Object.keys(CFLAGS).forEach(function(k){
+    var b=h("button",null,CFLAGS[k][0]);
+    if(k==="black"){b.style.background="#000";b.style.color="#fff";b.style.borderColor="#000"}
+    if(k==="bo"){b.style.background="#000";b.style.color="#ff7a00";b.style.borderColor="#ff7a00"}
+    if(k==="wb"){b.style.background=WB;b.style.color="#888";b.style.textShadow="0 0 4px #fff,0 0 4px #000"}
+    b.onclick=function(){send({k:"flag",v:k,c:n})};gf.appendChild(b);
+   });
+   card.appendChild(gf);
+
+   var r=h("div","row");
+   function fld(ph,mode){var i=h("input");i.placeholder=ph;i.inputMode=mode;i.autocomplete="off";r.appendChild(i);return i}
+   var ip=fld("POS","numeric"),ia=fld("▲ +1.2","text"),ib=fld("▼ −0.8","text");
+   var sp=h("button","go","INVIA POS");
+   sp.onclick=function(){var p=parseInt(ip.value,10);if(!p||p<1)return ip.focus();send({k:"pos",p:p,a:ia.value,b:ib.value,c:n})};
+   r.appendChild(sp);card.appendChild(r);
+   var r2=h("div","row"),fi=h("input");fi.placeholder="Messaggio libero…";fi.maxLength=60;fi.autocomplete="off";
+   var sf=h("button","go","INVIA");
+   sf.onclick=function(){if(fi.value.trim()){send({k:"free",t:fi.value.trim(),c:n});fi.value=""}};
+   fi.onkeydown=function(e){if(e.key==="Enter")sf.onclick()};
+   var cl=h("button","go gr","PULISCI");cl.onclick=function(){send({k:"clear",c:n})};
+   r2.append(fi,sf,cl);card.appendChild(r2);
+   carsEl.appendChild(card);
+  });
+  refresh();
+ }
+ wrap.appendChild(h("div","note","Distacchi in secondi, es. +1.2 / −0.8. Il pilota vede il messaggio finché non ne arriva un altro o premi PULISCI; in alto a destra c’è da quanti secondi è arrivato."));
  root.appendChild(wrap);
- subs=[function(m){render(prev,m,ls.get("pw-th")||"dark")}];
- render(prev,cur,ls.get("pw-th")||"dark");connect();
+ subs=[function(){refresh()}];
+ buildCars();connect();
 }
 
 function route(){
  var root=document.getElementById("app");
  if(es){es.close();es=null}clearTimeout(wd);
- root.replaceChildren();subs=[];statusCb=null;sendCb=null;cur=null;
- var m=/^#p=([a-z0-9]{6,32})$/.exec(location.hash);
- if(m){CODE=m[1];pilotView(root)}
- else{CODE=ls.get("pw-code");if(!CODE){CODE=newCode();ls.set("pw-code",CODE)}boxView(root)}
+ root.replaceChildren();subs=[];statusCb=null;sendCb=null;
+ var m=/^#p=([a-z0-9]{6,32})(?:&n=([A-Za-z0-9]{1,4}))?$/.exec(location.hash);
+ if(m){
+  CODE=m[1];
+  if(m[2])pilotView(root,cleanN(m[2]));
+  else{var e=h("div",null,"Link non valido: manca il numero di gara. Chiedi un nuovo link al box.");e.style.cssText="padding:30px;font-size:22px";root.appendChild(e)}
+ }else{CODE=ls.get("pw-code");if(!CODE){CODE=newCode();ls.set("pw-code",CODE)}boxView(root)}
 }
 window.addEventListener("hashchange",route);
 route();
